@@ -69,13 +69,11 @@ func receive_appwatcher(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Received event: " + event.Action)
-	b, err := json.Marshal(event)
+	_, err = json.Marshal(event)
 	if err != nil {
 		fmt.Printf("Error: %s", err)
 		return
 	}
-	fmt.Println(string(b))
 	if event.Action == "crashed" {
 		for index, element := range event.Dynos {
 			var annotation Annotation
